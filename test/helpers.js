@@ -125,6 +125,16 @@ describe("helper functions", function () {
     });
   });
 
+  describe("asset", function() {
+    it("returns the contents of the asset", function() {
+      var ctx = {};
+      var instance = assets({ helperContext: ctx, paths: "test/assets/js" });
+      var script = ctx.asset("simple.js");
+
+      expect(script).to.equal("var a = true;");
+    });
+  });
+
   describe("assetPath", function () {
     it("returns a file path for each asset found (separated by \\n)", function () {
       var ctx = {};

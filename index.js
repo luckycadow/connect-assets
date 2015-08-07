@@ -13,6 +13,7 @@ var connectAssets = module.exports = function (options, configureCallback) {
   options.helperContext.css = assets.helper(tagWriters.css, "css");
   options.helperContext.js = assets.helper(tagWriters.js, "js");
   options.helperContext.assetPath = assets.helper(tagWriters.noop);
+  options.helperContext.asset = assets.helper(tagWriters.asset);
 
   if (configureCallback) {
     configureCallback(assets);
@@ -98,5 +99,6 @@ var parseUrl = function (string) {
 var tagWriters = {
   css: function (url, attr) { return '<link rel="stylesheet" href="' + url + '"' + pasteAttr(attr) + ' />'; },
   js: function (url, attr) { return '<script src="' + url + '"' + pasteAttr(attr) + '></script>'; },
+  asset: function(url, attr, asset) { return asset.toString(); },
   noop: function (url) { return url; }
 };
